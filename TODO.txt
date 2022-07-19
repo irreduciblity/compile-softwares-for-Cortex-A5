@@ -1,0 +1,5 @@
+1. Determine the processor architecture of your phone.
+2. Find right tools eg. android-sdk c compiler(gcc even if its older).
+3. Locate Pacages and their dependencies. 
+4. Find a way to download source code from google's archive with right dependencies. 
+5. Start compiling.

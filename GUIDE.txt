@@ -1,0 +1,71 @@
+REQUIREMENTS:
+============
+ 1. Android phone
+ 2. Ubuntu Focal Fossa with adb installed
+ 3. Android NDK 
+
+ADB:
+===
+ 1. Get usb debugging on and connect your phone to your computer
+ 2. type:
+	
+	$ adb devices
+	#you device should be listed here
+
+	$ adb shell 
+	#to get shell access of your device
+
+
+
+STANDALONE TOOLCHAIN:
+====================
+Note that this guide may need slight adjustments with different
+versions of android ndk.
+
+To create a standalone toolchain use:
+
+	$NDK/build/tools/make_standalone_toolchain.py \
+	    --arch arm --api 21 --install-dir /tmp/my-android-toolchain
+
+	arch:
+		arm 	$TOOLCHAIN/arm-linux-androideabi/lib/
+		arm64 	$TOOLCHAIN/aarch64-linux-android/lib/
+		x86 	$TOOLCHAIN/i686-linux-android/lib/
+		x86_64 	$TOOLCHAIN/x86_64-linux-android/lib/
+
+Environment variables:
+	# Add the standalone toolchain to the search path.
+	# add this to .bashrc
+	# change this accordingly, 
+	#using gcc here
+
+	export PATH=$PATH:~/my-toolchain/bin
+
+	# Tell configure what tools to use.
+	#target_host=aarch64-linux-android
+	target_host=arm-linux-androideabi
+	#arm(32 bit) in this case, see my-toolchain/bin/
+
+	export AR=$target_host-ar
+	export AS=$target_host-as
+	export CC=$target_host-gcc
+	export CXX=$target_host-g++
+	export LD=$target_host-ld
+	export STRIP=$target_host-strip 
+	# Tell configure what flags Android requires.
+	export CFLAGS="-fPIE -fPIC"
+	export LDFLAGS="-pie"
+
+
+REFERENCE :
+Standalone toolcain: https://developer.android.com/ndk/guides/standalone_toolchain
+archived(old):  http://web.archive.org/web/20180917045832/https://developer.android.com/ndk/guides/standalone_toolchain
+API Levels: http://android-doc.github.io/ndk/guides/stable_apis.html
+archived: http://web.archive.org/web/20220613180515/https://android-doc.github.io/ndk/guides/stable_apis.html
+
+
+Note:
+/data/local/tmp
+https://stackoverflow.com/questions/558803/how-to-add-a-default-include-path-for-gcc-in-linux
+./configure LDFLAGS="-Wl,--allow-shlib-undefined" CFLAGS="-mandroid -fomit-frame-pointer"  --host=arm-linux-androideabi --build=x86_64-linux-gnu  --prefix="/data/local/tmp"
+

@@ -1,0 +1,8 @@
++NDK ditched gcc for clang around NDK version 14r-15r
+
++I am starting with android-ndk-r13b
+
+Processor: 1 GHz Cortex-A5
+REFERENCE: http://web.archive.org/web/20220424132427/https://en.wikipedia.org/wiki/ARM_Cortex-A5
+
+http://web.archive.org/web/20220717062627/https://www.amazon.in/Samsung-Galaxy-Star-GT-S7262-White/dp/B00FOH0G8K#productDetails

@@ -1,0 +1,8 @@
+[source code] openssh-8.4p1.tar.gz
+
+tar xvf openssh-8.4p1.tar.gz
+./configure LDFLAGS="-Wl,--allow-shlib-undefined" CFLAGS="-mandroid -fomit-frame-pointer"  --host=arm-linux-androideabi --build=x86_64-linux-gnu  --prefix="/tmp/PORT/COMPILED"
+
+[error] libcrypto not found
+
+[help] https://wiki.openssl.org/index.php/Android
